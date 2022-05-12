@@ -1,1 +1,28 @@
-Zet hier de arduino code
+int light = 0; // store the current light value
+
+void setup() {
+    // put your setup code here, to run once:
+    Serial.begin(9600); //configure serial to talk to computer
+    pinMode(13, OUTPUT); // configure digital pin 13 as an output
+    pinMode(12, OUTPUT); // configure digital pin 12 as an output
+}
+
+void loop() {
+    light = analogRead(A0); // read and save value from PR
+
+    Serial.println(light); // print current light value
+ 
+    if(light > 450) { // If it is bright...
+        Serial.println("tis licht");
+        digitalWrite(13,HIGH); //turn left LED onn
+        digitalWrite(12,HIGH); // turn right LED onn
+        delay(1000);
+    }
+    else { // If it's dark...
+        Serial.println("tis donker");
+        digitalWrite(13,LOW); // Turn left LED off
+        digitalWrite(12,LOW); // Turn right LED off
+
+    }
+
+}
